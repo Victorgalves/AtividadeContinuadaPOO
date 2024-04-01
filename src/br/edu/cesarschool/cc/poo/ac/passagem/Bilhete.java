@@ -46,7 +46,7 @@ public class Bilhete extends Registro {
     }
 
     public double obterValorPago(){
-        return getPreco() - getPagamentoEmPontos();
+        return preco - pagamentoEmPontos;
     }
 
     public double obterValorPontuacao(){
