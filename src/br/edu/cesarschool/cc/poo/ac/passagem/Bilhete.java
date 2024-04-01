@@ -48,6 +48,10 @@ public class Bilhete extends Registro {
     public double obterValorPago(){
         return getPreco() - getPagamentoEmPontos();
     }
+
+    public double obterValorPontuacao(){
+        return obterValorPago()/20;
+    }
     public  String gerarNumero(){
         return cliente.getCpf() + voo.getNumeroVoo() + dataHora.getYear() + dataHora.getMonth() + dataHora.getDayOfMonth();
     }
