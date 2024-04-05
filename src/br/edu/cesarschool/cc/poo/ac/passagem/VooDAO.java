@@ -5,8 +5,8 @@ import br.edu.cesarschool.next.oo.persistenciaobjetos.CadastroObjetos;
 
 public class VooDAO {
     private CadastroObjetos cadastro= new CadastroObjetos(Voo.class);
-    public VooDAO(CadastroObjetos cadastro) {
-        this.cadastro = cadastro;
+    public VooDAO() {
+
     }
     public String obterIdUnico(Voo voo){
         return (voo.getCompanhiaAerea()+ voo.getNumeroVoo());

@@ -1,38 +1,35 @@
 package br.edu.cesarschool.cc.poo.ac.passagem;
 
-import br.edu.cesarschool.cc.poo.ac.cliente.Cliente;
 import br.edu.cesarschool.next.oo.persistenciaobjetos.CadastroObjetos;
-public class BilheteDAO {
-    private CadastroObjetos cadastro = new CadastroObjetos(CadastroObjetos.class);
 
-    public BilheteDAO() {
+public class BilheteVipDAO {
+    private CadastroObjetos cadastro= new CadastroObjetos(CadastroObjetos.class);
+
+    public BilheteVipDAO() {
 
     }
-
-    private String obterIdUnico(Bilhete bilhete) {
-        return bilhete.gerarNumero();
+    private String obterIdUnico(BilheteVip bilheteVip){
+        return bilheteVip.gerarNumero();
     }
-
-    public Voo buscar(String numeroBilhete) {
+    public Voo buscar(String numeroBilhete){
         return (Voo) cadastro.buscar(numeroBilhete);
-
     }
 
-    public boolean incluir(Bilhete bilhete) {
-        String idUnico = obterIdUnico(bilhete);
+    public boolean incluir(BilheteVip bilhetevip) {
+        String idUnico = obterIdUnico(bilhetevip);
         Voo b = buscar(idUnico);
         if (b == null) {
-            cadastro.incluir(bilhete, idUnico);
+            cadastro.incluir(bilhetevip, idUnico);
             return true;
         }
         return false;
     }
 
-    public boolean alterar(Bilhete bilhete){
-        String idUnico = obterIdUnico(bilhete);
+    public boolean alterar(BilheteVip bilhetevip){
+        String idUnico = obterIdUnico(bilhetevip);
         Voo b = buscar(idUnico);
         if (b!= null) {
-            cadastro.alterar(bilhete, idUnico);
+            cadastro.alterar(bilhetevip, idUnico);
             return true;
         }
         return false;
