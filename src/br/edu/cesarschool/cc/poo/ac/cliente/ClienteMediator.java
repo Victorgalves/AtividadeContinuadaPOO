@@ -45,18 +45,18 @@ public class ClienteMediator {
             }
         }
     }
-   /* public String alterar(Voo voo) {
+   public String alterar(Cliente cliente) {
 
-        if (validar(voo) != null) {
-            return validar(voo);
+        if (validar(cliente) != null) {
+            return validar(cliente);
         } else {
-            if (!clienteDAO.alterar(voo)) {
+            if (!clienteDAO.alterar(cliente)) {
                 return "Cliente inexistente";
             } else {
                 return null;
             }
         }
-    }*/
+    }
         public String excluir(String cpf){
             if (!ValidadorCPF.isCpfValido(cpf)){
                 return "cpf errado";
