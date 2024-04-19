@@ -8,7 +8,7 @@ import br.edu.cesarschool.cc.poo.ac.utils.ValidadorCPF;
 
 public class BilheteMediator {
 	
-	private static BilheteMediator bilheteMediator = new BilheteMediator();
+	private static BilheteMediator instancia = new BilheteMediator();
 	
 	private BilheteDAO bilheteDao = new BilheteDAO();
 	private BilheteVipDAO bilheteVipDao = new BilheteVipDAO();
@@ -17,7 +17,10 @@ public class BilheteMediator {
 	
 	BilheteMediator() {
 	}
-	
+	public static BilheteMediator obterInstancia() {
+
+		return instancia;
+	}
 	public Bilhete buscar(String numeroBilhete) {
 		return bilheteDao.buscar(numeroBilhete);
 		
@@ -65,7 +68,7 @@ public class BilheteMediator {
 			
 			String idVoo = voo.obterIdVoo();
 			
-			Voo vooEncontrado = vooMediator.Buscar(idVoo);
+			Voo vooEncontrado = vooMediator.buscar(idVoo);
 			if(vooEncontrado == null) {
 				return new ResultadoGeracaoBilhete(null, null, "Voo não encontrado");
 			}else {
@@ -112,7 +115,7 @@ public class BilheteMediator {
 			}else {
 				Voo voo = new Voo(null, null, ciaAerea, numeroVoo);
 				String idVoo = voo.obterIdVoo();
-				Voo vooEncontrado = vooMediator.Buscar(idVoo);
+				Voo vooEncontrado = vooMediator.buscar(idVoo);
 				if(vooEncontrado == null) {
 					return new ResultadoGeracaoBilhete(null, null, "Voo não encontrado");
 				}else {

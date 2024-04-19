@@ -15,7 +15,8 @@ public class VooMediator {
         return instancia;
     }
 
-    public Voo Buscar(String IdVoo) {
+    public Voo buscar(String IdVoo) {
+
         return vooDAO.buscar(IdVoo);
     }
 
