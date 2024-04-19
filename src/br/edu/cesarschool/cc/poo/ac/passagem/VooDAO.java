@@ -19,7 +19,7 @@ public class VooDAO {
         String idUnico = obterIdUnico(voo);
         Voo v = buscar(idUnico);
         if (v == null) {
-            cadastro.incluir(v, idUnico);
+            cadastro.incluir(voo, idUnico);
             return true;
         }
         return false;
