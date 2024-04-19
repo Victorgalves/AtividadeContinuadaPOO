@@ -20,7 +20,7 @@ public class ClienteMediator {
         return clienteDAO.buscar(cpf);
     }
     public String validar(Cliente cliente){
-        if(!ValidadorCPF.isCpfValido(cliente.getCpf()) ){
+        if(ValidadorCPF.isCpfValido(cliente.getCpf()) ){
             return "cpf inválido";
         }
 
@@ -57,7 +57,7 @@ public class ClienteMediator {
         }
     }
         public String excluir(String cpf){
-            if (!ValidadorCPF.isCpfValido(cpf)){
+            if (ValidadorCPF.isCpfValido(cpf)){
                 return "cpf errado";
             }else{
                 if(!clienteDAO.excluir(cpf)){
