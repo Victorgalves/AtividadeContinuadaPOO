@@ -13,7 +13,7 @@ public class ClienteMediator {
 
     }
 
-    public ClienteMediator obterInstancia() {
+    public static ClienteMediator obterInstancia() {
         return instancia;
     }
 

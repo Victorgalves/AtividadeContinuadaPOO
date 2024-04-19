@@ -11,7 +11,7 @@ public class VooMediator {
     private VooMediator() {
     }
 
-    public VooMediator obterInstancia() {
+    public static VooMediator obterInstancia() {
         return instancia;
     }
 
