@@ -65,12 +65,12 @@ public class BilheteMediator {
 			
 			String idVoo = voo.obterIdVoo();
 			
-			Voo vooEncontrado = VooMediator.obterInstancia().Buscar(idVoo);
+			Voo vooEncontrado = vooMediator.Buscar(idVoo);
 			if(vooEncontrado == null) {
 				return new ResultadoGeracaoBilhete(null, null, "Voo não encontrado");
 			}else {
 				
-				Cliente cliente = ClienteMediator.obterInstancia().buscar(cpf);		
+				Cliente cliente = clienteMediator.buscar(cpf);		
 				if(cliente == null) {
 					return new ResultadoGeracaoBilhete(null, null, "Cliente não encontrado");
 				}else {
@@ -100,5 +100,50 @@ public class BilheteMediator {
 				
 			}
 		}
+	}
+	public ResultadoGeracaoBilhete gerarBilheteVip(String cpf, String ciaAerea, int numeroVoo, double preco, double pagamentoEmPontos, LocalDateTime dataHora, double bonusPontuacao) {
+		
+		String mensagemValidacao = validar(cpf, ciaAerea, numeroVoo, preco, pagamentoEmPontos, dataHora);
+		if(mensagemValidacao != null) {
+			return new ResultadoGeracaoBilhete(null, null, mensagemValidacao);
+		}else {
+			if(bonusPontuacao <0 || bonusPontuacao > 100) {
+				return new ResultadoGeracaoBilhete(null, null, "bonus errado");
+			}else {
+				Voo voo = new Voo(null, null, ciaAerea, numeroVoo);
+				String idVoo = voo.obterIdVoo();
+				Voo vooEncontrado = vooMediator.Buscar(idVoo);
+				if(vooEncontrado == null) {
+					return new ResultadoGeracaoBilhete(null, null, "Voo não encontrado");
+				}else {
+					Cliente cliente = clienteMediator.buscar(cpf);
+					if(cliente == null) {
+						return new ResultadoGeracaoBilhete(null, null, "Cliente não encontrado");
+	                } else {
+	                	double pontosNecessarios = pagamentoEmPontos * 20;
+	                	if(cliente.getSaldoPontos() < pontosNecessarios) {
+	                		return new ResultadoGeracaoBilhete(null, null, "Pontos insuficientes");
+	                	}else {
+	                		BilheteVip bilheteVip = new BilheteVip(cliente, vooEncontrado, preco, pagamentoEmPontos, dataHora, bonusPontuacao);
+	                		cliente.debitarPontos(pontosNecessarios);
+	                		cliente.creditarPontos(bilheteVip.obterValorPontuacaoVip());
+	                		
+	                		boolean incluirBilheteVip = bilheteDao.incluir(bilheteVip);
+	                		if(!incluirBilheteVip) {
+	                			 return new ResultadoGeracaoBilhete(null, null, "Bilhete VIP já existente");
+	                		}else {
+	                			String alteracaoCliente = clienteMediator.alterar(cliente);
+	                			if(alteracaoCliente != null) {
+	                				return new ResultadoGeracaoBilhete(null, null, alteracaoCliente);
+	                			}else {
+	                				return new ResultadoGeracaoBilhete(null, bilheteVip, null);
+	                			}
+	                		}
+	                	}
+					}
+				}
+			}
+		}
+		
 	}
 }
