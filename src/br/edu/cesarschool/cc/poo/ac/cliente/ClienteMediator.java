@@ -1,6 +1,5 @@
 package br.edu.cesarschool.cc.poo.ac.cliente;
 
-import br.edu.cesarschool.cc.poo.ac.passagem.Voo;
 import br.edu.cesarschool.cc.poo.ac.utils.StringUtils;
 import br.edu.cesarschool.cc.poo.ac.utils.ValidadorCPF;
 

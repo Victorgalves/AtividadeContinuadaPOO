@@ -1,6 +1,5 @@
 package br.edu.cesarschool.cc.poo.ac.passagem;
 
-import br.edu.cesarschool.cc.poo.ac.cliente.Cliente;
 import br.edu.cesarschool.next.oo.persistenciaobjetos.CadastroObjetos;
 public class BilheteDAO {
     private CadastroObjetos cadastro = new CadastroObjetos(CadastroObjetos.class);
@@ -13,14 +12,14 @@ public class BilheteDAO {
         return bilhete.gerarNumero();
     }
 
-    public Voo buscar(String numeroBilhete) {
-        return (Voo) cadastro.buscar(numeroBilhete);
+    public Bilhete buscar(String numeroBilhete) {
+        return (Bilhete)cadastro.buscar(numeroBilhete);
 
     }
 
     public boolean incluir(Bilhete bilhete) {
         String idUnico = obterIdUnico(bilhete);
-        Voo b = buscar(idUnico);
+        Bilhete b = buscar(idUnico);
         if (b == null) {
             cadastro.incluir(bilhete, idUnico);
             return true;
@@ -30,7 +29,7 @@ public class BilheteDAO {
 
     public boolean alterar(Bilhete bilhete){
         String idUnico = obterIdUnico(bilhete);
-        Voo b = buscar(idUnico);
+        Bilhete b = buscar(idUnico);
         if (b!= null) {
             cadastro.alterar(bilhete, idUnico);
             return true;
@@ -39,7 +38,7 @@ public class BilheteDAO {
     }
 
     public boolean excluir(String numeroBilhete){
-        Voo b = buscar(numeroBilhete);
+        Bilhete b = buscar(numeroBilhete);
         if (b != null) {
             cadastro.excluir(numeroBilhete);
             return true;
