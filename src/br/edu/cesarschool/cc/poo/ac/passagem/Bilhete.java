@@ -53,6 +53,6 @@ public class Bilhete extends Registro {
         return obterValorPago()/20;
     }
     public  String gerarNumero(){
-        return cliente.getCpf() + voo.getNumeroVoo() + dataHora.getYear() + dataHora.getMonth() + dataHora.getDayOfMonth();
+        return cliente.getCpf() + voo.getNumeroVoo() + dataHora.getYear() + dataHora.getMonthValue() + dataHora.getDayOfMonth();
     }
 }
