@@ -5,7 +5,7 @@ public class StringUtils {
 	private StringUtils() {}
 
 	public static boolean isVaziaOuNula(String valor) {
-		if(valor == null || valor.equals("")) {
+		if(valor == null || valor.isEmpty()) {
 			return true;
 		}else {
 			return false;

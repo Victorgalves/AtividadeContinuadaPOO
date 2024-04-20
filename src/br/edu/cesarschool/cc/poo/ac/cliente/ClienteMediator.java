@@ -24,7 +24,7 @@ public class ClienteMediator {
             return "CPF errado";
         }
 
-        if(StringUtils.isVaziaOuNula(cliente.getNome())) {
+        if(StringUtils.isVaziaOuNula(cliente.getNome()) || cliente.getNome().length() < 2) {
             return "nome errado";
         }
 
