@@ -21,11 +21,10 @@ public class VooMediator {
     }
 
     public String validarCiaNumero(String companhiaAerea, int numeroVoo) {
-        if (!(StringUtils.isVaziaOuNula(companhiaAerea) && companhiaAerea.length() == 2)) {
+        if (StringUtils.isVaziaOuNula(companhiaAerea) || companhiaAerea.length() != 2) {
             return "CIA aerea errada";
         }
-
-        if (!(numeroVoo <= 9999 && numeroVoo > 0 && numeroVoo >= 1000)) {
+        if (!(numeroVoo <= 9999 && numeroVoo >= 1000)) {
             return "Numero voo errado";
         }
         return null;
