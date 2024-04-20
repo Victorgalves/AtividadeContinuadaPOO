@@ -38,7 +38,7 @@ public class ClienteMediator {
             return validar(cliente);
         }else {
             if (!clienteDAO.incluir(cliente)){
-                return "Cliente já existente";
+                return "Cliente ja existente";
             } else {
                 return null;
             }
@@ -57,7 +57,7 @@ public class ClienteMediator {
         }
     }
         public String excluir(String cpf){
-            if (ValidadorCPF.isCpfValido(cpf)){
+            if (!ValidadorCPF.isCpfValido(cpf)){
                 return "cpf errado";
             }else{
                 if(!clienteDAO.excluir(cpf)){
