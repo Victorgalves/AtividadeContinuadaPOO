@@ -1,11 +1,10 @@
 package br.edu.cesarschool.cc.poo.ac.testes;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
 import br.edu.cesarschool.cc.poo.ac.cliente.Cliente;
 import br.edu.cesarschool.cc.poo.ac.cliente.ClienteMediator;
 import br.edu.cesarschool.next.oo.persistenciaobjetos.CadastroObjetos;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class TestesAc02 extends TesteGeral {
     private static final String CLIENTE_INEXISTENTE = "Cliente inexistente";
