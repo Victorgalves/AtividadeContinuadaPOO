@@ -98,7 +98,7 @@ public class BilheteMediator {
 								return new ResultadoGeracaoBilhete(null, null, alterarCliente);
 							}else{
 
-								return new ResultadoGeracaoBilhete(bilhete, null, alterarCliente);
+								return new ResultadoGeracaoBilhete(bilhete, null, null);
 							}
 						}
 					}

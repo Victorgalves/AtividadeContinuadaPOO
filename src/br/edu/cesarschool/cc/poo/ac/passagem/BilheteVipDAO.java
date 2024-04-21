@@ -3,7 +3,7 @@ package br.edu.cesarschool.cc.poo.ac.passagem;
 import br.edu.cesarschool.next.oo.persistenciaobjetos.CadastroObjetos;
 
 public class BilheteVipDAO {
-    private CadastroObjetos cadastro= new CadastroObjetos(CadastroObjetos.class);
+    private CadastroObjetos cadastro= new CadastroObjetos(BilheteVip.class);
 
     public BilheteVipDAO() {
 
