@@ -17,7 +17,7 @@ public class TelaVoo {
     private VooMediator vooMediator = VooMediator.obterInstancia();
 
     public void inicializaTelasCadastroVoo() {
-        while(true) {
+        while (true) {
             String idVoo = ID_VOO_DESCONHECIDO;
             imprimeMenuPrincipal();
             int opcao = ENTRADA.nextInt();
@@ -35,7 +35,7 @@ public class TelaVoo {
                     processaExclusao(idVoo);
                 }
             } else if (opcao == 4) {
-                processaBusca();
+                idVoo = processaBusca();
             } else if (opcao == 5) {
                 System.out.println("Saindo do cadastro de voos");
                 System.exit(0);
@@ -88,7 +88,7 @@ public class TelaVoo {
             System.out.println("Aeroporto de Destino: " + voo.getAeroportoDestino());
             System.out.println("Companhia Aérea: " + voo.getCompanhiaAerea());
             System.out.println("Dias da Semana: " + Arrays.toString(voo.getDiaDaSemana()));
-            System.out.println("Hora: " + voo.getHora());
+            System.out.println("Hora: " + voo.getHora().toString().substring(0, 5));
             return idVoo;
         }
     }
@@ -103,7 +103,6 @@ public class TelaVoo {
     }
 
     private Voo capturaVoo(String idVooDaAlteracao) {
-        Voo voo = null;
         String companhiaAerea;
         int numeroVoo;
         if (idVooDaAlteracao == ID_VOO_DESCONHECIDO) {
@@ -124,18 +123,44 @@ public class TelaVoo {
         if (!ciaAerea.equals(companhiaAerea)) {
             companhiaAerea = ciaAerea;
         }
-        System.out.print("Digite os dias da semana (separados por vírgula): ");
+        System.out.print("Digite os dias da semana (separados por vírgula, ex: segunda-feira,terça-feira,quarta-feira): ");
         String[] diasStr = lerString().split(",");
         DiaDaSemana[] diaDaSemana = new DiaDaSemana[diasStr.length];
+
         for (int i = 0; i < diasStr.length; i++) {
-            diaDaSemana[i] = DiaDaSemana.valueOf(diasStr[i].trim().toUpperCase());
+            switch (diasStr[i].trim().toLowerCase()) {
+                case "segunda-feira":
+                    diaDaSemana[i] = DiaDaSemana.SEGUNDA_FEIRA;
+                    break;
+                case "terça-feira":
+                    diaDaSemana[i] = DiaDaSemana.TERCA_FEIRA;
+                    break;
+                case "quarta-feira":
+                    diaDaSemana[i] = DiaDaSemana.QUARTA_FEIRA;
+                    break;
+                case "quinta-feira":
+                    diaDaSemana[i] = DiaDaSemana.QUINTA_FEIRA;
+                    break;
+                case "sexta-feira":
+                    diaDaSemana[i] = DiaDaSemana.SEXTA_FEIRA;
+                    break;
+                case "sábado":
+                    diaDaSemana[i] = DiaDaSemana.SABADO;
+                    break;
+                case "domingo":
+                    diaDaSemana[i] = DiaDaSemana.DOMINGO;
+                    break;
+                default:
+                    throw new IllegalArgumentException("Dia da semana inválido: " + diasStr[i]);
+            }
         }
+
+
         System.out.print("Digite a hora (HH:MM): ");
-        String horaStr = lerString();
+        String horaStr = lerString() + ":00";
         LocalTime hora = LocalTime.parse(horaStr);
 
-        voo = new Voo(aeroportoOrigem, aeroportoDestino, companhiaAerea, numeroVoo, diaDaSemana, hora);
-        return voo;
+        return new Voo(aeroportoOrigem, aeroportoDestino, companhiaAerea, numeroVoo, diaDaSemana, hora);
     }
 
     private String lerString() {

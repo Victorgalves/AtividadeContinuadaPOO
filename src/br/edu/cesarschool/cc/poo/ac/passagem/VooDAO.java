@@ -43,6 +43,7 @@ public class VooDAO {
         Voo v = buscar(idVoo);
         if (v != null) {
             cadastro.excluir(idVoo);
+
             return true;
         }
         return false;

@@ -1,9 +1,13 @@
 package br.edu.cesarschool.cc.poo.ac.passagem;
 
+import br.edu.cesarschool.cc.poo.ac.utils.DiaDaSemana;
 import br.edu.cesarschool.cc.poo.ac.utils.StringUtils;
 
 import java.io.Serializable;
+import java.time.LocalTime;
 import java.util.Arrays;
+import java.util.List;
+
 
 public class VooMediator {
     private static VooMediator instancia = new VooMediator();
@@ -47,8 +51,34 @@ public class VooMediator {
         if (voo.getAeroportoOrigem().equals(voo.getAeroportoDestino())) {
             return "Aeroporto origem igual a aeroporto destino";
         }
-        return validarCiaNumero(voo.getCompanhiaAerea(), voo.getNumeroVoo());
 
+        DiaDaSemana[] diasDaSemana = voo.getDiaDaSemana();
+        if (diasDaSemana == null || diasDaSemana.length == 0) {
+            return "Dias da semana nao informados.";
+        }
+
+        int[] diasRepetidos = new int[7];
+        for (DiaDaSemana dia : diasDaSemana) {
+            int codigo = dia.getCodigo();
+            if (codigo < 0 || codigo >= 7) {
+                return "Dias da semana nao informado";
+            }
+            if (diasRepetidos[codigo] > 0) {
+                return "Dia da semana repetido";
+            }
+            diasRepetidos[codigo]++;
+        }
+
+        if (voo.getHora() == null) {
+            return "Hora nao informada.";
+        }
+
+        LocalTime hora = voo.getHora();
+        if (hora.getSecond() != 0 || hora.getNano() != 0) {
+            return "Hora invalida";
+        }
+
+        return validarCiaNumero(voo.getCompanhiaAerea(), voo.getNumeroVoo());
     }
 
     public String incluir(Voo voo){
