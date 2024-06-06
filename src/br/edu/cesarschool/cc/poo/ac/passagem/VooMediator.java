@@ -2,6 +2,7 @@ package br.edu.cesarschool.cc.poo.ac.passagem;
 
 import br.edu.cesarschool.cc.poo.ac.utils.StringUtils;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 public class VooMediator {
@@ -80,6 +81,21 @@ public class VooMediator {
             if(!vooDAO.excluir(idVoo)){
                 return "Voo inexistente";
             } return null;
+        }
+    }
+
+    public Voo [] buscarTodos(){
+        Serializable[] res = vooDAO.buscarTodos();
+        if(res == null){
+            return null;
+        }else{
+            Voo[] voos = new Voo[res.length];
+            int i = 0;
+            for(Serializable req : res){
+                voos[i] = (Voo) req;
+                i++;
+            }
+            return voos;
         }
     }
 }
