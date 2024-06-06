@@ -55,7 +55,7 @@ public class VooMediator {
         if (validar!=null) {
             return validar;
         } else{
-            if (vooDAO.incluir(voo)==false){
+            if (!vooDAO.incluir(voo)){
                 return "Voo ja existente";
             } return null;
         }
@@ -77,7 +77,7 @@ public class VooMediator {
         if(StringUtils.isVaziaOuNula(idVoo)){
             return "Id voo errado";
         } else{
-            if(vooDAO.excluir(idVoo)==false){
+            if(!vooDAO.excluir(idVoo)){
                 return "Voo inexistente";
             } return null;
         }
