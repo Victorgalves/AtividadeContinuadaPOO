@@ -2,6 +2,7 @@ package br.edu.cesarschool.cc.poo.ac.cliente;
 
 import br.edu.cesarschool.cc.poo.ac.utils.StringUtils;
 import br.edu.cesarschool.cc.poo.ac.utils.ValidadorCPF;
+import br.edu.cesarschool.cc.poo.ac.utils.ordenacao.Ordenadora;
 
 public class ClienteMediator {
 	private static final String CLIENTE_INEXISTENTE = "Cliente inexistente";
@@ -9,7 +10,8 @@ public class ClienteMediator {
 	private static final int TAM_MIN_NOME = 2;
 	private static final String NOME_ERRADO = "nome errado";
 	private static ClienteMediator instancia;
-	private ClienteDAO clienteDao = new ClienteDAO(); 
+	private ClienteDAO clienteDao = new ClienteDAO();
+
 	public static ClienteMediator obterInstancia() {
 		if (instancia == null) {
 			instancia = new ClienteMediator();
@@ -61,5 +63,11 @@ public class ClienteMediator {
 			return CLIENTE_INEXISTENTE;
 		}
 		return null;
+	}
+
+	public Cliente[] obterClientesPorNome(){
+		Cliente[] clientes = clienteDao.buscarTodos();
+		Ordenadora.ordenar(clientes);
+		return clientes;
 	}
 }

@@ -3,8 +3,9 @@ package br.edu.cesarschool.cc.poo.ac.cliente;
 import java.io.Serializable;
 
 import br.edu.cesarschool.cc.poo.ac.utils.Registro;
+import br.edu.cesarschool.cc.poo.ac.utils.ordenacao.Comparavel;
 
-public class Cliente extends Registro {
+public class Cliente extends Registro implements Comparavel {
 	private String cpf;
 	private String nome; 
 	private double saldoPontos;
@@ -37,4 +38,14 @@ public class Cliente extends Registro {
 		return getCpf();
 	}
 
+	@Override
+	public int comparar(Object o1) {
+		Cliente outro = (Cliente) o1;
+		return this.nome.compareTo(outro.nome);
+	}
+
+	@Override
+	public String toString() {
+		return nome + ", " + cpf + ", " + saldoPontos;
+	}
 }

@@ -3,11 +3,17 @@ package br.edu.cesarschool.cc.poo.ac.passagem;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.DayOfWeek;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import br.edu.cesarschool.cc.poo.ac.cliente.Cliente;
 import br.edu.cesarschool.cc.poo.ac.cliente.ClienteMediator;
+import br.edu.cesarschool.cc.poo.ac.negocio.comparadores.ComparadorBilheteDataHora;
+import br.edu.cesarschool.cc.poo.ac.negocio.comparadores.ComparadorBilhetePreco;
 import br.edu.cesarschool.cc.poo.ac.utils.DiaDaSemana;
 import br.edu.cesarschool.cc.poo.ac.utils.ValidadorCPF;
+import br.edu.cesarschool.cc.poo.ac.utils.ordenacao.Ordenadora;
 
 public class BilheteMediator {
 	private static BilheteMediator instancia;
@@ -158,4 +164,19 @@ public class BilheteMediator {
 		}
 		return new ResultadoGeracaoBilhete(null, bilhete, null);
 	}
+
+	public Bilhete[] obterBilhetePorPreco(){
+		Bilhete[] bilhetes = bilheteDao.buscarTodos();
+		Ordenadora.ordenar(bilhetes, new ComparadorBilhetePreco());
+		return bilhetes;
+	}
+
+	public Bilhete[] obterBilhetesPorDataHora(double precoMin){
+		Bilhete[] bilhetes = bilheteDao.buscarTodos();
+		List<Bilhete> filtrar = Arrays.stream(bilhetes).filter(bilhete -> bilhete.getPreco() <= precoMin).collect(Collectors.toList());
+		Bilhete[] ArrayFiltrados = filtrar.toArray(new Bilhete[0]);
+		Ordenadora.ordenar(ArrayFiltrados, new ComparadorBilheteDataHora());
+		return ArrayFiltrados;
+	}
+
 }

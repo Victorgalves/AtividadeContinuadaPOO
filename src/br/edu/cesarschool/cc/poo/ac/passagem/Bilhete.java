@@ -61,4 +61,9 @@ public class Bilhete extends Registro {
 	public String getIdUnico() {
 		return gerarNumero();
 	}
+
+	@Override
+	public String toString() {
+		return String.format("%.2f , %s , %s , %s", preco, voo.getAeroportoOrigem(), voo.getAeroportoDestino(), dataHora);
+	}
 }
