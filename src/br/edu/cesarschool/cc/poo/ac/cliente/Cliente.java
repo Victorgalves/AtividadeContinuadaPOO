@@ -30,8 +30,11 @@ public class Cliente extends Registro {
 	}
 	public void debitarPontos(double valor) {
 		saldoPontos -= valor;
-	}	
-	public String getIdUnico() {
+	}
+
+	@Override
+	public String getIdUnico(){
 		return getCpf();
 	}
+
 }

@@ -56,6 +56,8 @@ public class Bilhete extends Registro {
 				dataHora.getYear() + dataHora.getMonthValue() + 
 				dataHora.getDayOfMonth();
 	}
+
+	@Override
 	public String getIdUnico() {
 		return gerarNumero();
 	}

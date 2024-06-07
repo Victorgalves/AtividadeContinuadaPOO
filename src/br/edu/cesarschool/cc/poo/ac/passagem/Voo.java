@@ -57,6 +57,8 @@ public class Voo extends Registro {
 	public String obterIdVoo() {
 		return companhiaAerea + numeroVoo;
 	}
+
+	@Override
 	public String getIdUnico() {
 		return obterIdVoo();
 	}
