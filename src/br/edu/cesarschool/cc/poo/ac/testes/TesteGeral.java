@@ -14,8 +14,8 @@ import br.edu.cesarschool.cc.poo.ac.utils.DiaDaSemana;
 import br.edu.cesarschool.next.oo.persistenciaobjetos.CadastroObjetos;
 
 public class TesteGeral {
-	private static final String IND_CUR_DIR = ".";
-	private static final String FILE_SEP = File.separator;
+	protected static final String IND_CUR_DIR = ".";
+	protected static final String FILE_SEP = File.separator;
 	protected static final String DIR_CLIENTE = IND_CUR_DIR + FILE_SEP + "Cliente";
 	protected static final String DIR_VOO = IND_CUR_DIR + FILE_SEP + "Voo";
 	protected static final String DIR_BILHETE = IND_CUR_DIR + FILE_SEP + "Bilhete";

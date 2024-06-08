@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import br.edu.cesarschool.next.oo.persistenciaobjetos.CadastroObjetos;
 
-public class VooDAO {
+public class VooDAO  {
 	private CadastroObjetos cadastro = new CadastroObjetos(Voo.class);
 	public Voo buscar(String idVoo) {
 		return (Voo)cadastro.buscar(idVoo);

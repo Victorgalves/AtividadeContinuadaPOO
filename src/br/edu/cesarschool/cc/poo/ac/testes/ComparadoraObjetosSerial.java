@@ -19,7 +19,7 @@ class ComparadoraObjetosSerial {
 			oos1.writeObject(s1);
 			oos2.writeObject(s2);
 			byte[] b1 = bos1.toByteArray();
-			byte[] b2 = bos2.toByteArray();			
+			byte[] b2 = bos2.toByteArray();
 			for (int i=0; i<b1.length; i++) {
 				if (b2[i] != b1[i]) {
 					ret = false;
@@ -30,7 +30,7 @@ class ComparadoraObjetosSerial {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-		return ret; 
+		return ret;
 	}
 
 }
