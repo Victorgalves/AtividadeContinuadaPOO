@@ -6,6 +6,7 @@ import java.time.LocalTime;
 import org.junit.jupiter.api.Assertions;
 
 import br.edu.cesarschool.cc.poo.ac.cliente.Cliente;
+import br.edu.cesarschool.cc.poo.ac.passagem.Bilhete;
 import br.edu.cesarschool.cc.poo.ac.passagem.BilheteMediator;
 import br.edu.cesarschool.cc.poo.ac.passagem.ResultadoGeracaoBilhete;
 import br.edu.cesarschool.cc.poo.ac.passagem.Voo;
@@ -32,6 +33,7 @@ public class TesteGeral {
 	protected CadastroObjetos cadastroVoo = new CadastroObjetos(Voo.class);
 	protected BilheteMediator biMed = BilheteMediator.obterInstancia();
 	protected CadastroObjetos cadastroCli = new CadastroObjetos(Cliente.class);
+	protected CadastroObjetos cadastroBil = new CadastroObjetos(Bilhete.class);
 
 
 	protected void excluirCadastros() {
