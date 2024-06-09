@@ -107,4 +107,8 @@ public class VooMediator {
 	public Voo buscar(String idVoo) {
 		return vooDao.buscar(idVoo);
 	}
+
+	public Voo[] buscarTodos() {
+		return vooDao.buscarTodos();
+	}
 }
