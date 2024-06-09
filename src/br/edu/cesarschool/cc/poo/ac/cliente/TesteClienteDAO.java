@@ -1,7 +1,5 @@
 package br.edu.cesarschool.cc.poo.ac.cliente;
 
-import br.edu.cesarschool.next.oo.persistenciaobjetos.CadastroObjetos;
-
 public class TesteClienteDAO {
 
 	public static void main(String[] args) {
