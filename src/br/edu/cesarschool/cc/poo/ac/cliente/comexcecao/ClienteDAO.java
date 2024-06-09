@@ -18,18 +18,14 @@ public class ClienteDAO extends SuperDAO<Cliente> {
 		}
 		return cliente;
 	}
-
 	public void incluir(Cliente cliente) throws ExcecaoRegistroJaExistente {
 		try {
-			if (buscar(cliente.getIdUnico()) == null) {
-				if (!daoGenerico.incluir(cliente)) {
-					throw new ExcecaoRegistroJaExistente("Falha ao incluir cliente.");
-				}
-			} else {
-				throw new ExcecaoRegistroJaExistente("Cliente existente");
-			}
+			buscar(cliente.getIdUnico());
+			throw new ExcecaoRegistroJaExistente("Cliente existente");
 		} catch (ExcecaoRegistroInexistente e) {
-			throw new RuntimeException(e);
+			if (!daoGenerico.incluir(cliente)) {
+				throw new ExcecaoRegistroJaExistente("Falha ao incluir cliente.");
+			}
 		}
 	}
 

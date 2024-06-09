@@ -10,7 +10,7 @@ class ComparadoraObjetosSerial {
 		ByteArrayOutputStream  bos2 = null;
 		ObjectOutputStream oos1 = null;
 		ObjectOutputStream oos2 = null;
-		boolean ret = true;
+		boolean ret = false;
 		try {
 			bos1 = new ByteArrayOutputStream();
 			bos2 = new ByteArrayOutputStream();
@@ -21,8 +21,8 @@ class ComparadoraObjetosSerial {
 			byte[] b1 = bos1.toByteArray();
 			byte[] b2 = bos2.toByteArray();
 			for (int i=0; i<b1.length; i++) {
-				if (b2[i] != b1[i]) {
-					ret = false;
+				if (b2[i] == b1[i]) {
+					ret = true;
 					break;
 				}
 			}
