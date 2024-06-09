@@ -165,7 +165,7 @@ public class BilheteMediator {
 		return new ResultadoGeracaoBilhete(null, bilhete, null);
 	}
 
-	public Bilhete[] obterBilhetePorPreco(){
+	public Bilhete[] obterBilhetesPorPreco(){
 		Bilhete[] bilhetes = bilheteDao.buscarTodos();
 		Ordenadora.ordenar(bilhetes, new ComparadorBilhetePreco());
 		return bilhetes;

@@ -7,7 +7,7 @@ public class RelatorioBilhetes {
 
     public static void gerarRelatorioBilhetesPorPreco(){
         BilheteMediator mediator = BilheteMediator.obterInstancia();
-        Bilhete[] bilhetes = mediator.obterBilhetePorPreco();
+        Bilhete[] bilhetes = mediator.obterBilhetesPorPreco();
         for(Bilhete bilhete : bilhetes){
             System.out.println(bilhete.toString());
         }
