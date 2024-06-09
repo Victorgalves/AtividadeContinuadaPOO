@@ -28,6 +28,9 @@ public class VooDAO extends SuperDAO<Voo> {
 
 	public Voo[] buscarTodos() {
 		Registro[] registros = daoGenerico.buscarTodos();
+		if(registros == null){
+			return new Voo[0];
+		}
 		Voo[] voos = new Voo[registros.length];
 		for (int i = 0; i < registros.length; i++) {
 			voos[i] = (Voo) registros[i];

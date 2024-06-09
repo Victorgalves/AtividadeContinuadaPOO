@@ -14,45 +14,46 @@ public class ClienteDAO extends SuperDAO<Cliente> {
 	public Cliente buscar(String cpf) throws ExcecaoRegistroInexistente {
 		Cliente cliente = (Cliente) daoGenerico.buscar(cpf);
 		if (cliente == null) {
-			throw new ExcecaoRegistroInexistente("Cliente não encontrado.");
+			throw new ExcecaoRegistroInexistente("Cliente inexistente");
 		}
 		return cliente;
 	}
 
 	public void incluir(Cliente cliente) throws ExcecaoRegistroJaExistente {
-        try {
-            if (buscar(cliente.getIdUnico()) == null) {
-                if (!daoGenerico.incluir(cliente)) {
-                    throw new ExcecaoRegistroJaExistente("Falha ao incluir cliente.");
-                }
-            } else {
-                throw new ExcecaoRegistroJaExistente("Cliente já existe.");
-            }
-        } catch (ExcecaoRegistroInexistente e) {
-            throw new RuntimeException(e);
-        }
-    }
+		try {
+			if (buscar(cliente.getIdUnico()) == null) {
+				if (!daoGenerico.incluir(cliente)) {
+					throw new ExcecaoRegistroJaExistente("Falha ao incluir cliente.");
+				}
+			} else {
+				throw new ExcecaoRegistroJaExistente("Cliente existente");
+			}
+		} catch (ExcecaoRegistroInexistente e) {
+			throw new RuntimeException(e);
+		}
+	}
 
 
 	public void alterar(Cliente cliente) throws ExcecaoRegistroInexistente {
-		if (buscar(cliente.getIdUnico()) != null) {
-			if(!daoGenerico.alterar(cliente)){
+		if (buscar(cliente.getIdUnico()) == null) {
+			throw new ExcecaoRegistroInexistente("Cliente não encontrado");
+		} else {
+			if (!daoGenerico.alterar(cliente)) {
 				throw new ExcecaoRegistroInexistente("Falha ao alterar. Registro inexistente");
-			}else {
-				throw new ExcecaoRegistroInexistente("Cliente não encontrado");
 			}
 		}
 	}
 
-	public void excluir(String cpf) throws  ExcecaoRegistroInexistente{
-		if (buscar(cpf) != null) {
-			if(!daoGenerico.excluir(cpf)){
-				throw new ExcecaoRegistroInexistente("Falha ao tentar exlcuir. Cliente inexistente");
-			}else{
-				throw new ExcecaoRegistroInexistente("Cliente não encontrado");
+	public void excluir(String cpf) throws ExcecaoRegistroInexistente {
+		if (buscar(cpf) == null) {
+			throw new ExcecaoRegistroInexistente("Cliente não encontrado");
+		} else {
+			if (!daoGenerico.excluir(cpf)) {
+				throw new ExcecaoRegistroInexistente("Falha ao tentar excluir o cliente");
 			}
 		}
 	}
+
 
 	public Cliente[] buscarTodos() {
 		Registro[] registros = daoGenerico.buscarTodos();

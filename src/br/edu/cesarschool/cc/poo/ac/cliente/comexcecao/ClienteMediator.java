@@ -26,28 +26,31 @@ public class ClienteMediator {
 	public void validar(Cliente cliente) throws ExcecaoValidacao {
 		ExcecaoValidacao excecaoValidacao = new ExcecaoValidacao();
 		if (cliente == null) {
-			excecaoValidacao.adicionarMensagem("Cliente nao informado");
-		} else if (!ValidadorCPF.isCpfValido(cliente.getCpf())) {
-			excecaoValidacao.adicionarMensagem(CPF_ERRADO);
-		} else if (StringUtils.isVaziaOuNula(cliente.getNome())) {
-			excecaoValidacao.adicionarMensagem(NOME_ERRADO);
-		} else if (cliente.getNome().length() < TAM_MIN_NOME) {
-			excecaoValidacao.adicionarMensagem(NOME_ERRADO);
-		} else if (cliente.getSaldoPontos() < 0) {
-			excecaoValidacao.adicionarMensagem("saldo errado");
+			excecaoValidacao.adicionarMensagem("Cliente não informado");
+		} else {
+			if (!ValidadorCPF.isCpfValido(cliente.getCpf())) {
+				excecaoValidacao.adicionarMensagem(CPF_ERRADO);
+			}
+			if (StringUtils.isVaziaOuNula(cliente.getNome()) || cliente.getNome().length() < TAM_MIN_NOME) {
+				excecaoValidacao.adicionarMensagem(NOME_ERRADO);
+			}
+			if (cliente.getSaldoPontos() < 0) {
+				excecaoValidacao.adicionarMensagem("saldo errado");
+			}
 		}
-		if (excecaoValidacao.getMensagens().isEmpty()){
+		if (!excecaoValidacao.getMensagens().isEmpty()) {
 			throw excecaoValidacao;
 		}
 	}
 
+
 	public void incluir(Cliente cliente) throws ExcecaoRegistroJaExistente, ExcecaoValidacao {
 		validar(cliente);
 		if (!clienteDao.incluir(cliente)) {
-				throw new ExcecaoRegistroJaExistente("Cliente ja existe");
+			throw new ExcecaoRegistroJaExistente("Cliente existente");
 		}
-
 	}
+
 	public void alterar(Cliente cliente) throws ExcecaoValidacao, ExcecaoRegistroInexistente {
 		validar(cliente);
 		if (!clienteDao.alterar(cliente)) {

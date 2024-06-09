@@ -1,8 +1,10 @@
 package br.edu.cesarschool.cc.poo.ac.utils;
 
+import br.edu.cesarschool.cc.poo.ac.passagem.Voo;
 import br.edu.cesarschool.next.oo.persistenciaobjetos.CadastroObjetos;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 
 public class DAOGenerico<T extends Registro & Serializable> {
     private CadastroObjetos cadastro;
@@ -39,11 +41,23 @@ public class DAOGenerico<T extends Registro & Serializable> {
 
     public T[] buscarTodos() {
         try {
-            return (T[]) cadastro.buscarTodos();
+            Serializable[] serializaveis = cadastro.buscarTodos();
+            if (serializaveis == null) {
+                return null;
+            }
+
+            T[] result = (T[]) Array.newInstance(Registro.class, serializaveis.length);
+            for (int i = 0; i < serializaveis.length; i++) {
+                result[i] = (T) serializaveis[i];
+            }
+            return result;
         } catch (RuntimeException e) {
             return null;
         }
     }
+
+
+
 
     public boolean excluir(String id) {
         try {

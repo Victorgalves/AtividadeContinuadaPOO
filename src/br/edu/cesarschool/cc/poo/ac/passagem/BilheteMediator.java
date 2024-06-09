@@ -173,7 +173,7 @@ public class BilheteMediator {
 
 	public Bilhete[] obterBilhetesPorDataHora(double precoMin){
 		Bilhete[] bilhetes = bilheteDao.buscarTodos();
-		List<Bilhete> filtrar = Arrays.stream(bilhetes).filter(bilhete -> bilhete.getPreco() <= precoMin).collect(Collectors.toList());
+		List<Bilhete> filtrar = Arrays.stream(bilhetes).filter(bilhete -> bilhete.getPreco() >= precoMin).collect(Collectors.toList());
 		Bilhete[] ArrayFiltrados = filtrar.toArray(new Bilhete[0]);
 		Ordenadora.ordenar(ArrayFiltrados, new ComparadorBilheteDataHora());
 		return ArrayFiltrados;

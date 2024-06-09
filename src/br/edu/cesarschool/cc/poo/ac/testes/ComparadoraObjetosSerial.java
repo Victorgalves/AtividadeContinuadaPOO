@@ -25,7 +25,6 @@ class ComparadoraObjetosSerial {
 					ret = false;
 					break;
 				}
-				i++;
 			}
 		} catch (Exception e) {
 			throw new RuntimeException(e);
